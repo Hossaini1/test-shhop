@@ -49,11 +49,11 @@ export function EditItemQuantityButton({ type, item }: { item: CartItem; type: '
           e.preventDefault()
 
           if (item.id) {
-            if (type === 'plus') {
-              incrementItem(item.id)
-            } else {
-              decrementItem(item.id)
-            }
+            const id = Number(item.id)
+            if (!Number.isFinite(id)) return
+
+            if (type === 'plus') incrementItem(id)
+            else decrementItem(id)
           }
         }}
         type="button"

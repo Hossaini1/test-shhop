@@ -3,7 +3,7 @@ services:
     image: postgres:16
     environment:
       POSTGRES_USER: payload
-      POSTGRES_PASSWORD: payload
+      POSTGRES_PASSWORD: user-payload
       POSTGRES_DB: payload
     ports:
       - "5432:5432"
