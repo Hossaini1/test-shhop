@@ -21,6 +21,8 @@ import { Users } from '@/collections/Users'
 import { Footer } from '@/globals/Footer'
 import { Header } from '@/globals/Header'
 import { plugins } from './plugins'
+import Authors from './collections/authors/Authors'
+import Posts from './collections/posts/Posts'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -33,11 +35,13 @@ export default buildConfig({
       beforeLogin: ['@/components/BeforeLogin#BeforeLogin'],
       // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
-      beforeDashboard: ['@/components/BeforeDashboard#BeforeDashboard'],
+      beforeDashboard: ['@/components/BeforeDashboard#BeforeDashboard', '@/components/HalloWidget/HalloWidget.tsx'],
+actions: ['@/components/HalloWidget/ExportBtn#ExportBtn']
+    
     },
     user: Users.slug,
   },
-  collections: [Users, Pages, Categories, Media],
+  collections: [Users, Pages, Categories, Media, Authors, Posts],
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
